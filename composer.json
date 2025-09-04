@@ -1,0 +1,42 @@
+{
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "captainhook/captainhook": "^5.17",
+    "captainhook/plugin-composer": "^5.3",
+    "friendsofphp/php-cs-fixer": "^3.34",
+    "infection/infection": "^0.29.6",
+    "phpunit/phpunit": "^9.5",
+    "phpstan/phpstan": "^1.10",
+    "phpmd/phpmd": "^2.14",
+    "ramsey/conventional-commits": "^1.5",
+    "captainhook/hook-installer": "^1.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "infection/extension-installer": true,
+      "captainhook/plugin-composer": true,
+      "captainhook/hook-installer": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "captainhook": {
+      "config": "captainhook.json",
+      "exec": "vendor/bin/captainhook",
+      "force-install": true,
+      "only-enabled": true,
+      "disable-plugin": false
+    }
+  }
+}

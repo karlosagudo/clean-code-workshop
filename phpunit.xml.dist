@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         backupGlobals="false"
+         colors="true"
+         bootstrap="tests/bootstrap.php"
+         convertDeprecationsToExceptions="false"
+         executionOrder="default"
+>
+    <php>
+        <ini name="display_errors" value="1" />
+        <ini name="error_reporting" value="-1" />
+        <server name="APP_ENV" value="test" force="true" />
+        <server name="SHELL_VERBOSITY" value="-1" />
+        <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
+        <server name="SYMFONY_PHPUNIT_VERSION" value="9.6" />
+        <env name="KERNEL_CLASS" value="\App\Kernel" />
+        <env name="DATABASE_URL" value="sqlite:///%kernel.project_dir%/var/data.db" force="true"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <exclude>
+            <directory>src/Infrastructure/DB</directory>
+            <directory>src/Infrastructure/DTO</directory>
+            <directory>src/Infrastructure/Repositories</directory>
+            <directory>src/Infrastructure/Service/Backup/</directory>
+            <directory>src/Infrastructure/Service/Print/</directory>
+            <directory>src/Infrastructure/Command</directory>
+            <directory>src/Infrastructure/Controllers/OpenApiViewer</directory>
+            <directory>src/Infrastructure/Controllers/FormResult/Export</directory>
+            <directory>src/Infrastructure/Controllers/FormResult/Html</directory>
+            <file>src/Kernel.php</file>
+            <file>src/Infrastructure/Controllers/OpenApiViewer.php</file>
+        </exclude>
+    </coverage>
+
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
+    </listeners>
+
+    <extensions>
+    </extensions>
+</phpunit>

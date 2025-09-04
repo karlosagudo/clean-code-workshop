@@ -1,0 +1,88 @@
+{
+  "commit-msg": {
+    "enabled": false,
+    "actions": []
+  },
+  "pre-push": {
+    "enabled": false,
+    "actions": []
+  },
+  "pre-commit": {
+    "enabled": true,
+    "actions": [
+      {
+        "action": "\\CaptainHook\\App\\Hook\\PHP\\Action\\Linting"
+      },
+      {
+        "action": "vendor/bin/phpmd {$STAGED_FILES|of-type:php|separated-by:,} text phpmd.ruleset.xml --exclude src/Resources,tests,migrations,src/Infrastructure/DB/Fixtures",
+        "options": [],
+        "conditions": [
+          {
+            "exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\All",
+            "args": [
+              ["*.php"]
+            ]
+          }
+        ]
+      },
+      {
+        "action": "vendor/bin/infection --threads=4",
+        "options": [],
+        "conditions": [
+          {
+            "exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\All",
+            "args": [
+              ["*.php"]
+            ]
+          }
+        ]
+      },
+      {
+        "action": "vendor/bin/php-cs-fixer fix {$STAGED_FILES|of-type:php} --config .php-cs-fixer.dist.php",
+        "options": [],
+        "conditions": [
+          {
+            "exec": "\\CaptainHook\\App\\Hook\\Condition\\FileStaged\\All",
+            "args": [
+              [
+                "*.php"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "action": "git update-index --again",
+        "options": []
+      }
+    ]
+  },
+  "prepare-commit-msg": {
+    "enabled": true,
+    "actions": [
+      {
+        "action": "\\Ramsey\\CaptainHook\\PrepareConventionalCommit"
+      }
+    ]
+  },
+  "post-commit": {
+    "enabled": false,
+    "actions": []
+  },
+  "post-merge": {
+    "enabled": false,
+    "actions": []
+  },
+  "post-checkout": {
+    "enabled": false,
+    "actions": []
+  },
+  "post-rewrite": {
+    "enabled": false,
+    "actions": []
+  },
+  "post-change": {
+    "enabled": false,
+    "actions": []
+  }
+}
