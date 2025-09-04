@@ -2,7 +2,7 @@
 
 namespace App\Task1;
 
-/***
+/**
  * Task 1: Poor Naming and Lack of Function Extraction
  * Introduction
  * Welcome to Task 1 of our Clean Code Refactoring Workshop! In this task, we'll be focusing on
@@ -14,6 +14,8 @@ namespace App\Task1;
  * Hint
  * Pay attention to variable and function names.
  * Look for opportunities to extract logical units into separate functions.
+ *
+ * @SuppressWarnings(PHPMD)
  */
 
 function hdlgpt($a, $b) {
