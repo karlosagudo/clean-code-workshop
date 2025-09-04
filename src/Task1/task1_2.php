@@ -21,5 +21,6 @@ echo "Fahrenheit: " . convertCelsiusToFahrenheit(30) . " and Miles: " . convertK
 /*
  * But no tests, no good architecture.
  * What about Fahrenheit to Celsius?
- * What about miles to Kilometers?
+ * What about miles to Kilometers? miles to meters?
+ * what about kilograms to pounds?
  */

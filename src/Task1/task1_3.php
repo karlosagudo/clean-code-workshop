@@ -9,7 +9,7 @@ use App\Task1\Classes\Unit;
 
 $converter = new Converter();
 $celsius = new Unit(30, 'celsius', 'temperature');
-$fahrenheits = $converter->convert($celsius, 'fahrentheit');
+$fahrenheits = $converter->convert($celsius, 'fahrenheit');
 
 $meters = new Unit(80, 'kilometer', 'length');
 $miles = $converter->convert($meters, 'mile');
